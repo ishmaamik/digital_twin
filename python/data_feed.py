@@ -94,11 +94,14 @@ if __name__ == "__main__":
     batch_size = 32
     val_batch_size =128
 
-    real_beam_pwr_path = 'real_beam_pwr.mat'
-    real_pos_path = 'ue_relative_pos.mat'
+    real_beam_pwr_path = 'data/real_beam_pwr.mat'
+    real_pos_path = 'data/ue_relative_pos.mat'
 
-    synth_beam_pwr_path = 'synth_beam_power_measured.mat'
-    synth_pos_path = 'synth_UE_loc.mat'
+    # Synthetic digital-twin data used only for the Stage-0 reproduction; moved
+    # out of data/ into archive/synthetic_stage0_data/ once Stage 0 was validated
+    # and Stage 1 (real-to-real only) no longer needed it.
+    synth_beam_pwr_path = 'archive/synthetic_stage0_data/synth_beam_power_measured.mat'
+    synth_pos_path = 'archive/synthetic_stage0_data/synth_UE_loc.mat'
 
     rand_state = 10
 
