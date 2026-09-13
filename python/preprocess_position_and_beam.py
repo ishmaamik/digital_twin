@@ -5,7 +5,7 @@ data:10/8/2022
 Modified for the post-deployment environmental-shift study (Phase 0, Step 1):
 generalized from a single hardcoded scenario to loop over all four DeepSense6G
 scenarios used in Stage 1 (McAllister Ave day/night, Rural Road day/night),
-now located under datasets/ instead of at the repo root.
+now located under dataset/ instead of at the repo root.
 """
 # %%
 import json
@@ -24,12 +24,12 @@ N_BEAMS = 64
 # of the shared hardware, not of any one street, so it is not re-tuned per scenario.
 CENTER_BEAM = 28
 
-# The four scenarios now live under datasets/, not at the repo root.
+# The four scenarios now live under dataset/, not at the repo root.
 SCENARIO_FOLDERS = [
-    "datasets/Scenario1",
-    "datasets/Scenario2",
-    "datasets/Scenario3",
-    "datasets/Scenario4",
+    "dataset/Scenario1",
+    "dataset/Scenario2",
+    "dataset/Scenario3",
+    "dataset/Scenario4",
 ]
 
 OUTPUT_DIR = "data"
