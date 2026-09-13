@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin\.venv\Lib\site-packages\scipy\io\matlab\_mio.py", line 43, in _open_file
+    return open(file_like, mode), True
+           ~~~~^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/real_beam_pwr.mat'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\train_model_transfer_learning_measured.py", line 37, in <module>
+    dataset_real_test = DataFeed(pos_path=real_pos_path, beam_pwr_path=real_beam_pwr_path, rand_state=rand_state, mode='test')
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\data_feed.py", line 75, in __init__
+    self.ue_relative_pos, self.best_beams, self.beam_pwr = create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_data_point, portion,
+                                                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                                                           max_xy=max_xy, max_dist=max_dist)
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\data_feed.py", line 31, in create_samples
+    beam_pwr = loadmat(beam_pwr_path)
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin\.venv\Lib\site-packages\scipy\io\matlab\_mio.py", line 240, in loadmat
+    with _open_file_context(file_name, appendmat) as f:
+         ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin\.venv\Lib\site-packages\scipy\io\matlab\_mio.py", line 21, in _open_file_context
+    f, opened = _open_file(file_like, appendmat, mode)
+                ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin\.venv\Lib\site-packages\scipy\io\matlab\_mio.py", line 49, in _open_file
+    return open(file_like, mode), True
+           ~~~~^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/real_beam_pwr.mat'
