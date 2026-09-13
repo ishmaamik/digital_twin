@@ -14,7 +14,7 @@ from data_feed import DataFeed
 if __name__ == "__main__":
     real_beam_pwr_path = 'data/real_beam_pwr.mat'
     real_pos_path = 'data/ue_relative_pos.mat'
-    synth_beam_pwr_path = 'data/synth_beam_power.mat'
+    synth_beam_pwr_path = 'data/synth_beam_power_measured.mat'
     synth_pos_path = 'data/synth_UE_loc.mat'
 
     torch.manual_seed(2022)

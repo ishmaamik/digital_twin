@@ -13,7 +13,21 @@ from tqdm import tqdm
 import sklearn
 
 
-def create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_data_point, portion):
+def create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_data_point, portion,
+                    max_xy=30., max_dist=None):
+    """
+    max_xy and max_dist are the normalization divisors for the Cartesian and
+    polar-distance position features, respectively. They default to the
+    original Scenario-1-only constants (30 meters, and the McAllister
+    bounding-box diagonal sqrt(24**2+28**2)) so that any existing call site
+    that does not pass these arguments reproduces the original Stage-0
+    behavior exactly. For the multi-scenario Stage-1 study, pass in the
+    globally pooled values from data/global_normalization.json instead, so
+    every scenario is normalized on the same physical scale.
+    """
+    if max_dist is None:
+        max_dist = np.sqrt(24**2 + 28**2)
+
     beam_pwr = loadmat(beam_pwr_path)
     beam_pwr = beam_pwr[list(beam_pwr.keys())[-1]]
     ue_relative_pos = loadmat(pos_path)
@@ -23,9 +37,9 @@ def create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_d
     best_beams = np.argmax(beam_pwr, 1) # starts from 0
 
     polar_anlge = np.arctan2(ue_relative_pos[:, 1], ue_relative_pos[:, 0]) / np.pi
-    polar_distance = np.sqrt(ue_relative_pos[:, 1]**2 + ue_relative_pos[:, 0]**2) / np.sqrt(24**2+28**2)
+    polar_distance = np.sqrt(ue_relative_pos[:, 1]**2 + ue_relative_pos[:, 0]**2) / max_dist
 
-    ue_relative_pos = ue_relative_pos / 30.
+    ue_relative_pos = ue_relative_pos / max_xy
 
     ue_relative_pos = np.concatenate([ue_relative_pos, np.stack([polar_anlge, polar_distance], -1)], -1)
 
@@ -56,8 +70,10 @@ def create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_d
 
 
 class DataFeed(Dataset):
-    def __init__(self, pos_path, beam_pwr_path, rand_state, mode='train', train_split=0.8, num_data_point=None, portion=1.):
-        self.ue_relative_pos, self.best_beams, self.beam_pwr = create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_data_point, portion)
+    def __init__(self, pos_path, beam_pwr_path, rand_state, mode='train', train_split=0.8, num_data_point=None, portion=1.,
+                 max_xy=30., max_dist=None):
+        self.ue_relative_pos, self.best_beams, self.beam_pwr = create_samples(pos_path, beam_pwr_path, rand_state, mode, train_split, num_data_point, portion,
+                                                                               max_xy=max_xy, max_dist=max_dist)
     
     def __len__(self):
         return self.best_beams.size
@@ -81,7 +97,7 @@ if __name__ == "__main__":
     real_beam_pwr_path = 'real_beam_pwr.mat'
     real_pos_path = 'ue_relative_pos.mat'
 
-    synth_beam_pwr_path = 'synth_beam_power.mat'
+    synth_beam_pwr_path = 'synth_beam_power_measured.mat'
     synth_pos_path = 'synth_UE_loc.mat'
 
     rand_state = 10

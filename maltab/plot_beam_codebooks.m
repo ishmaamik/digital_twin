@@ -7,7 +7,7 @@ beam_angle_x = beam_anlges/pi*180;
 beam_angle_x = linspace(beam_angle_x(2),beam_angle_x(63),64);
 
 beam_angle = [beam_angle_z, beam_angle_x.'];
-F_CB = beam_steering_codebook2(beam_angle, 1, 16, 0);
+F_CB = beam_steering_codebook(beam_angle, 1, 16);
 F_CB = F_CB(:, 2:4:end);
 
 num_tx = size(F_CB, 1);
