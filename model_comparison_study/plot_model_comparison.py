@@ -48,12 +48,10 @@ COMPARISONS = [
 MODEL_STYLE = {
     "mlp":            {"label": "MLP (original)",        "color": "#2a78d6", "marker": "o", "linestyle": "--", "linewidth": 2.4, "zorder": 5},
     "tinymlp":        {"label": "TinyMLP",                "color": "#eb6834", "marker": "s", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
-    "resmlp":         {"label": "ResMLP",                 "color": "#1baf7a", "marker": "*", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
     "knn":            {"label": "k-NN",                   "color": "#eda100", "marker": "^", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
     "rf":             {"label": "Random Forest",          "color": "#e87ba4", "marker": "D", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
     "fourier_knn":    {"label": "Fourier + k-NN",         "color": "#008300", "marker": "v", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
     "fourier_rf":     {"label": "Fourier + Random Forest","color": "#4a3aa7", "marker": "P", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
-    "fttransformer":  {"label": "FT-Transformer",         "color": "#e34948", "marker": "X", "linestyle": "-",  "linewidth": 2.0, "zorder": 3},
 }
 MODEL_ORDER = list(MODEL_STYLE.keys())
 

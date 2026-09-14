@@ -177,14 +177,14 @@ python original_project/train_model_epoch_ablation.py
 
 **Folder:** `model_comparison_study/` (new, written as a follow-up to the thesis's Stage 1 result)
 
-The original paper, Stage 0, and Stage 1 above all use one fixed architecture — a 3-hidden-layer MLP (`FullyConnected` in `model.py`). This follow-up study asks a different question: across a range of architectures from cheap to expensive, which gives the best accuracy *per unit of resource cost* on the exact same Stage 1 cross-scenario protocol (same four scenarios, same splits, same sweep of real target samples)? See `model_comparison_study/model.py` and `model_comparison_study/train_baselines_cross_scenario.py` for full docstrings and rationale per model.
+The original paper, Stage 0, and Stage 1 above all use one fixed architecture — a 3-hidden-layer MLP (`FullyConnected` in `model.py`). This follow-up study asks a different question: which of a handful of alternative, cheap-to-train models gives the best accuracy *per unit of resource cost* on the exact same Stage 1 cross-scenario protocol (same four scenarios, same splits, same sweep of real target samples)? See `model_comparison_study/model.py` and `model_comparison_study/train_baselines_cross_scenario.py` for full docstrings and rationale per model.
+
+(Two more expensive variants — a residual MLP with LayerNorm/dropout, and a tabular transformer with self-attention over the 4 features — were tried and dropped. Neither changed the picture enough to justify the extra training cost, and dropping them keeps every model in this comparison in the same cheap, fast-to-run tier.)
 
 | Model | Type | Params | Run with |
 |---|---|---|---|
 | `mlp` | Original `FullyConnected` (reference point) | 136,976 | `python model_comparison_study/train_model_cross_scenario.py --model mlp` |
 | `tinymlp` | 2-layer, 32-unit MLP | 1,744 | `--model tinymlp` |
-| `resmlp` | Residual MLP + LayerNorm + dropout | 204,304 | `--model resmlp` |
-| `fttransformer` | Tabular transformer (self-attention over the 4 features) | 17,840 | `--model fttransformer` |
 | `knn` | k-Nearest Neighbors | — | `python model_comparison_study/train_baselines_cross_scenario.py --model knn` |
 | `rf` | Random Forest | — | `--model rf` |
 | `fourier_knn` | k-NN on NeRF/SIREN-style sinusoidal position features | — | `--model fourier_knn` |
