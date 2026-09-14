@@ -1,3 +1,4 @@
 dataset/*
 *.pth
 /runs
+NOTED.md
