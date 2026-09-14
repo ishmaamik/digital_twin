@@ -48,7 +48,8 @@ digital_twin_extended/
 │   └── Scenario4/               Rural Road, Tempe AZ — nighttime (same street as Scenario3)
 ├── data/                        <- PREPROCESSED data, ready for the model to consume (see Section 5)
 ├── maltab/                      <- MATLAB plotting/analysis scripts (folder name has an original typo, kept as-is)
-├── python/                      <- All Python code: preprocessing, model, training scripts (see Section 6)
+├── original_project/            <- Original thesis pipeline: preprocessing, Stage 0/1 scripts, single MLP (see Section 6)
+├── model_comparison_study/      <- New: 7-model architecture comparison built on the same Stage 1 protocol (see Section 6.5)
 ├── result/                      <- All numeric results (.mat / .json) and generated figures (.png)
 ├── final figures/               <- MATLAB .fig figures (original paper's figures + our new comparison figure)
 └── archive/                     <- NOT checked in / not always present locally. See Section 4.3.
@@ -93,7 +94,7 @@ These files are large and have been moved out of `data/` into an `archive/` fold
 
 ## 5. The model
 
-One model architecture is used throughout the entire project — both the original paper's work and our extension. It's deliberately simple: a small fully-connected neural network (defined in `python/model.py`) that takes a 4-number description of the user's position (x, y, angle, and distance relative to the base station) and outputs a probability for each of 16 possible beams.
+One model architecture is used throughout the original paper's work and Stages 0–1 of our extension. It's deliberately simple: a small fully-connected neural network (defined in `original_project/model.py`) that takes a 4-number description of the user's position (x, y, angle, and distance relative to the base station) and outputs a probability for each of 16 possible beams.
 
 ```
 Input (4 numbers: x, y, angle, distance)
@@ -103,6 +104,8 @@ Input (4 numbers: x, y, angle, distance)
    -> Linear(256 -> 16)   [one score per beam]
 ```
 
+A later follow-up (`model_comparison_study/`, see Section 6.5) compares this architecture against 6 alternatives — cheaper and more expensive neural variants, plus two non-neural baselines — on the same Stage 1 protocol, to find the best accuracy-per-resource-cost tradeoff.
+
 Why 16 beams when the hardware sweeps 64? The real antenna hardware only actually has 16 physical beam directions; the extra 64-value sweep is an oversampled research measurement. Every script in this repo picks out the correct 16 out of 64 using the same rule (`beam_pwr[:, 1::4]` in `data_feed.py`), which is a property of the hardware itself and is identical across all four scenarios.
 
 ---
@@ -111,10 +114,10 @@ Why 16 beams when the hardware sweeps 64? The real antenna hardware only actuall
 
 ### 6.1 Phase 0 — Preprocessing
 
-**Script:** `python/preprocess_position_and_beam.py`
+**Script:** `original_project/preprocess_position_and_beam.py`
 **Run from the repository root** (this matters — see the warning box below):
 ```bash
-python python/preprocess_position_and_beam.py
+python original_project/preprocess_position_and_beam.py
 ```
 
 What it does, for each of the four scenarios in `dataset/`:
@@ -123,28 +126,28 @@ What it does, for each of the four scenarios in `dataset/`:
 3. Estimates which physical compass direction the base station's antenna is actually pointed, purely from the data itself: it looks at every moment where beam #28 (the antenna's designated "straight ahead" beam) happened to be the correct answer, and fits a line through those positions.
 4. Saves everything to `data/`, plus a sanity-check scatter plot per scenario, plus the pooled global normalization constants described in Section 4.2.
 
-> ⚠️ **Every script in this repo must be run with your terminal's current folder set to `digital_twin_extended` itself (the repo root), not `python/`.** All the file paths inside these scripts (like `data/scenario1_ue_relative_pos.mat`) are written relative to the repo root. Running a script from inside `python/` will make it silently fail to find its own data — this bit us multiple times during development, so it's worth over-emphasizing.
+> ⚠️ **Every script in this repo must be run with your terminal's current folder set to `digital_twin_extended` itself (the repo root), not `original_project/` or `model_comparison_study/`.** All the file paths inside these scripts (like `data/scenario1_ue_relative_pos.mat`) are written relative to the repo root. Running a script from inside its own folder will make it silently fail to find its own data — this bit us multiple times during development, so it's worth over-emphasizing.
 
 ### 6.2 Stage 0 — Reproducing the original paper's result
 
-**Scripts:** `python/train_model_synth_measured.py`, `train_model_transfer_learning_measured.py`, and their `_uniform` counterparts, plus `train_model_real.py`.
+**Scripts:** `original_project/train_model_synth_measured.py`, `train_model_transfer_learning_measured.py`, and their `_uniform` counterparts, plus `train_model_real.py`.
 
 This step exists purely to **prove our implementation is correct** before trusting any new result built on top of it — it doesn't test anything new. It pretrains the model on synthetic digital-twin data (see Section 4.3 — you need the `archive/` folder restored for this), then fine-tunes it on a small, increasing number of real McAllister Ave samples, exactly reproducing the original paper's experiment.
 
 ```bash
-python python/train_model_transfer_learning_measured.py
+python original_project/train_model_transfer_learning_measured.py
 ```
 
 **Result we obtained:** 91.53% top-2 accuracy with zero real samples (the original paper reports 91.4% — a match within 0.13 percentage points), climbing to 97.83% with 100 real samples.
 
 ### 6.3 Stage 1 — Our new contribution: does this survive environmental change?
 
-**Script:** `python/train_model_cross_scenario.py` (new, written for this thesis)
+**Script:** `original_project/train_model_cross_scenario.py` (new, written for this thesis)
 
 This is the core new experiment. For each of four comparisons built from the scenarios in Section 4.1, it trains a model from scratch on one scenario ("source"), tests it immediately (zero real target samples) on a different scenario ("target"), then fine-tunes it on a growing number of real target samples (5, 10, 15, ... up to 200) and re-tests after each step.
 
 ```bash
-python python/train_model_cross_scenario.py
+python original_project/train_model_cross_scenario.py
 ```
 
 The four comparisons (each changes exactly one thing — either time-of-day or site, never both):
@@ -160,15 +163,36 @@ This uses only real data throughout — no digital twin, no ray tracing, no `arc
 
 ### 6.4 Diagnostic — is it really about more data, or just more training time?
 
-**Script:** `python/train_model_epoch_ablation.py` (new, written for this thesis)
+**Script:** `original_project/train_model_epoch_ablation.py` (new, written for this thesis)
 
 A fair question about Stage 1's results: when we give the model more real samples, we're also giving it more training batches per epoch, so it's technically training *longer* too — how do we know it's the extra data that matters, and not just extra training time? This script isolates that: it fixes the real-sample count at exactly 100 for every comparison, and only changes how many epochs it fine-tunes for (40 vs. 80 — roughly matching the extra training time that going from 100 to 200 samples would provide).
 
 ```bash
-python python/train_model_epoch_ablation.py
+python original_project/train_model_epoch_ablation.py
 ```
 
 **Result:** doubling the epoch budget alone changes accuracy by less than 0.1 percentage points across every comparison. It's genuinely about having more real data, not about training for longer.
+
+### 6.5 Model comparison study — which architecture is most efficient?
+
+**Folder:** `model_comparison_study/` (new, written as a follow-up to the thesis's Stage 1 result)
+
+The original paper, Stage 0, and Stage 1 above all use one fixed architecture — a 3-hidden-layer MLP (`FullyConnected` in `model.py`). This follow-up study asks a different question: across a range of architectures from cheap to expensive, which gives the best accuracy *per unit of resource cost* on the exact same Stage 1 cross-scenario protocol (same four scenarios, same splits, same sweep of real target samples)? See `model_comparison_study/model.py` and `model_comparison_study/train_baselines_cross_scenario.py` for full docstrings and rationale per model.
+
+| Model | Type | Params | Run with |
+|---|---|---|---|
+| `mlp` | Original `FullyConnected` (reference point) | 136,976 | `python model_comparison_study/train_model_cross_scenario.py --model mlp` |
+| `tinymlp` | 2-layer, 32-unit MLP | 1,744 | `--model tinymlp` |
+| `resmlp` | Residual MLP + LayerNorm + dropout | 204,304 | `--model resmlp` |
+| `fttransformer` | Tabular transformer (self-attention over the 4 features) | 17,840 | `--model fttransformer` |
+| `knn` | k-Nearest Neighbors | — | `python model_comparison_study/train_baselines_cross_scenario.py --model knn` |
+| `rf` | Random Forest | — | `--model rf` |
+| `fourier_knn` | k-NN on NeRF/SIREN-style sinusoidal position features | — | `--model fourier_knn` |
+| `fourier_rf` | Random Forest on the same sinusoidal position features | — | `--model fourier_rf` |
+
+(A neural `fouriermlp` variant — the same sinusoidal encoding feeding the `FullyConnected` backbone instead of a tree/geometric model — was tried and dropped: it inherits the same source-pretrain/target-finetune weakness that `knn`/`rf` already show dominates the plain MLP, and its full run took too long for the marginal insight it would add. `fourier_knn`/`fourier_rf` test the same "does spatial encoding help" question directly on the models that already outperform the MLP, for a fraction of the cost.)
+
+Each run prints parameter count and wall-clock training time alongside accuracy, and writes to `result/stage1_<comparison>_<model>_acc.mat` / `_pwr.mat` / `result/stage1_summary_<model>.json` — suffixed so nothing overwrites the original `mlp` results from Section 6.3. `knn` and `rf` don't have a gradient-based fine-tuning mechanic, so each real-sample sweep point is a fresh fit on the available target data rather than a continued one; see the docstring at the top of `train_baselines_cross_scenario.py` for the exact protocol difference this implies.
 
 ---
 
