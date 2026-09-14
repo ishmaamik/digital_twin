@@ -1,4 +1,4 @@
 dataset/*
 *.pth
 /runs
-NOTES.md
+NOTED.md
