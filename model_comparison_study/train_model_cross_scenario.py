@@ -1,19 +1,40 @@
 """
 Phase 2 / Stage 1: real-to-real environment-shift study.
 
-For each of the four single-factor comparisons defined in the methodology,
+For each of the single-factor comparisons defined in the methodology,
 train a beam-prediction model from scratch on one DeepSense6G scenario
 (the "source"), evaluate it zero-shot on a different scenario (the "target"),
 then fine-tune it on an increasing number of real target-scenario samples,
 re-evaluating after each step. This reuses the exact same model architecture,
 train_model() training loop, and 16-beam labeling already validated in
 Stage 0 (see train_model_transfer_learning_measured.py) -- the only new
-piece is looping this over scenario PAIRS instead of synthetic-twin -> real,
-and using the globally pooled position normalization (data/global_normalization.json)
-instead of the Scenario-1-only constants Stage 0 uses.
+piece is looping this over scenario PAIRS instead of synthetic-twin -> real.
+
+This script now runs a separate, second batch of comparisons -- 6 new
+lane-width comparisons, involving 3 additional scenarios: 32/33 (a second
+day/night pair at a site with the same 2-lane width as McAllister) and 7 (a
+single wide, 4-lane site). These isolate whether site-shift severity tracks
+a difference in lane width specifically, using same-width transfer
+(1->32, 2->33), two independent narrow->wide replications (1->7, 32->7),
+and a wide->wide control (3->7).
+
+The original 4 single-factor comparisons among Scenarios 1-4 (McAllister
+Ave and Rural Road, day/night) are deliberately NOT part of COMPARISONS
+below and are not run by this script -- they are kept, untouched, as
+ORIGINAL_COMPARISONS purely for reference. Every already-committed result
+for those 4 comparisons, for every model, stays exactly as it was.
+
+Because the new comparisons mix old scenarios (1, 2, 3) with new ones (7,
+32, 33), they require position-normalization constants pooled across all 7
+scenarios -- otherwise a given normalized position value would not mean the
+same physical distance across old and new scenarios. This is why
+load_global_normalization() below reads data/global_normalization_all7.json,
+a separate file computed for this purpose; the original
+data/global_normalization.json (Scenarios 1-4 only) is untouched, so
+original_project/ is completely unaffected by this script.
 
 Must be run from the repository root (digital_twin_extended/), e.g.:
-    python python/train_model_cross_scenario.py
+    python model_comparison_study/train_model_cross_scenario.py --model mlp
 """
 import argparse
 import datetime
@@ -32,12 +53,32 @@ from train_model import train_model
 DATA_DIR = "data"
 RESULT_DIR = "result"
 
-# The four single-factor comparisons from the methodology (source, target, label).
-COMPARISONS = [
+# The original four single-factor comparisons from the methodology (source,
+# target, label). Kept here for reference only -- NOT run by default, and
+# not touched by this extension. Every already-committed result for these
+# 4 comparisons, for every model, stays exactly as it was; see
+# ORIGINAL_COMPARISONS below if you ever want to rerun them deliberately.
+ORIGINAL_COMPARISONS = [
     ("scenario1", "scenario2", "time_of_day_at_mcallister"),  # McAllister: day -> night
     ("scenario3", "scenario4", "time_of_day_at_ruralroad"),   # Rural Road: day -> night
-    ("scenario1", "scenario3", "site_during_day"),            # Day: McAllister -> Rural Road
-    ("scenario2", "scenario4", "site_during_night"),          # Night: McAllister -> Rural Road
+    ("scenario1", "scenario3", "site_during_day"),            # Day: McAllister -> Rural Road (narrow -> wide)
+    ("scenario2", "scenario4", "site_during_night"),          # Night: McAllister -> Rural Road (narrow -> wide)
+]
+
+# Lane-width comparisons: Scenarios 1/2 and 32/33 are both 2-lane (narrow)
+# sites; Scenario 3 is Rural Road (wide, 6-lane); Scenario 7 is a separate
+# 4-lane (wide) site with no day/night pair collected. This is the set
+# actually run by this script and by train_baselines_cross_scenario.py
+# (both import COMPARISONS), deliberately kept separate from
+# ORIGINAL_COMPARISONS above so a run here never touches Scenarios 1-4's
+# existing results.
+COMPARISONS = [
+    ("scenario32", "scenario33", "time_of_day_at_site32"),        # New narrow site: day -> night
+    ("scenario1", "scenario32", "site_narrow_to_narrow_day"),     # McAllister -> new narrow site, day
+    ("scenario2", "scenario33", "site_narrow_to_narrow_night"),   # McAllister -> new narrow site, night
+    ("scenario1", "scenario7", "site_narrow_to_wide_mcallister"), # McAllister (narrow) -> Scenario 7 (wide)
+    ("scenario32", "scenario7", "site_narrow_to_wide_site32"),    # New narrow site -> Scenario 7 (wide), replication
+    ("scenario3", "scenario7", "site_wide_to_wide"),              # Rural Road (wide) -> Scenario 7 (wide), control
 ]
 
 SWEEP_POINTS = list(range(5, 101, 5)) + [150, 200]  # real target samples used for fine-tuning
@@ -54,7 +95,10 @@ NUM_CLASSES = 16
 
 
 def load_global_normalization():
-    with open(os.path.join(DATA_DIR, "global_normalization.json")) as f:
+    # Pooled across all 7 scenarios (1-4, 7, 32, 33) -- see the module
+    # docstring. Deliberately a separate file from data/global_normalization.json
+    # (Scenarios 1-4 only), which original_project/ still uses unmodified.
+    with open(os.path.join(DATA_DIR, "global_normalization_all7.json")) as f:
         norm = json.load(f)
     return norm["max_xy"], norm["max_dist"]
 
