@@ -2,3 +2,7 @@ dataset/*
 *.pth
 /runs
 NOTED.md
+result/train_new_comparisons_log.txt
+result/train_straight_comparisons_log.txt
+result/stage1_summary_new_comparisons.json
+result/stage1_summary_straight_comparisons.json

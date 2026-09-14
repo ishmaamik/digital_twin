@@ -12,6 +12,15 @@ piece is looping this over scenario PAIRS instead of synthetic-twin -> real,
 and using the globally pooled position normalization (data/global_normalization.json)
 instead of the Scenario-1-only constants Stage 0 uses.
 
+This script now also runs a second batch, NEW_COMPARISONS: 8 reverse-
+direction and new-site comparisons (Scenarios 1/2/4/7/32/33) requested to
+extend the original four. These use a separate, all-7-scenario pooled
+normalization file (data/global_normalization_all7.json) since they mix
+Scenarios 1-4 with the newer 7/32/33 -- the original
+data/global_normalization.json (Scenarios 1-4 only) is untouched, and
+ORIGINAL_COMPARISONS below is not re-run (its results already exist in
+result/ from an earlier run on this branch).
+
 Must be run from the repository root (digital_twin_extended/), e.g.:
     python python/train_model_cross_scenario.py
 """
@@ -30,13 +39,59 @@ from train_model import train_model
 DATA_DIR = "data"
 RESULT_DIR = "result"
 
-# The four single-factor comparisons from the methodology (source, target, label).
-COMPARISONS = [
+# The original four single-factor comparisons (source, target, label). Kept
+# here for reference only -- NOT run by this script anymore, since their
+# results already exist in result/ (stage1_time_of_day_at_mcallister_*,
+# stage1_time_of_day_at_ruralroad_*, stage1_site_during_day_*,
+# stage1_site_during_night_*). See NEW_COMPARISONS below for what this
+# script actually runs.
+ORIGINAL_COMPARISONS = [
     ("scenario1", "scenario2", "time_of_day_at_mcallister"),  # McAllister: day -> night
     ("scenario3", "scenario4", "time_of_day_at_ruralroad"),   # Rural Road: day -> night
     ("scenario1", "scenario3", "site_during_day"),            # Day: McAllister -> Rural Road
     ("scenario2", "scenario4", "site_during_night"),          # Night: McAllister -> Rural Road
 ]
+
+# The 8 new comparisons actually run by this script: reverse directions of
+# two of the original four, plus McAllister <-> Scenario 7 (wide, day-only),
+# McAllister <-> Scenario 32 (narrow, day), and McAllister <-> Scenario 33
+# (narrow, night). Labeled s{A}_to_s{B} for consistency with the other
+# branches' naming.
+NEW_COMPARISONS = [
+    ("scenario2", "scenario1", "s2_to_s1"),    # McAllister night -> day (reverse of time_of_day_at_mcallister)
+    ("scenario4", "scenario2", "s4_to_s2"),    # Rural Road night -> McAllister night (reverse of site_during_night)
+    ("scenario1", "scenario7", "s1_to_s7"),    # McAllister day -> Scenario 7 (wide, day-only)
+    ("scenario1", "scenario32", "s1_to_s32"),  # McAllister day -> Scenario 32 (narrow, day)
+    ("scenario7", "scenario1", "s7_to_s1"),    # Scenario 7 -> McAllister day (reverse)
+    ("scenario32", "scenario1", "s32_to_s1"),  # Scenario 32 -> McAllister day (reverse)
+    ("scenario1", "scenario33", "s1_to_s33"),  # McAllister day -> Scenario 33 (narrow, night)
+    ("scenario33", "scenario1", "s33_to_s1"),  # Scenario 33 -> McAllister day (reverse)
+]
+
+# Diagnostic follow-up: s1_to_s32/s1_to_s33 (and their reverses) showed
+# highly unstable, non-monotonic per-seed accuracy in NEW_COMPARISONS above.
+# Root-cause investigation (see python/preprocess_college_ave_straight.py)
+# found Scenario32/33's road physically bends partway through the captured
+# segment (visible in data/scenario32_ue_scatter.png /
+# scenario33_ue_scatter.png), unlike every other scenario in this study,
+# which are all straight. STRAIGHT_COMPARISONS re-runs the same four
+# McAllister<->College Ave pairs using the bend-excluded
+# scenario32straight/scenario33straight data (y<40m only, ~65-73% of the
+# original samples kept) to test whether removing the bend restores stable,
+# monotonic recovery. The original NEW_COMPARISONS results for these four
+# pairs (bend included) are NOT overwritten or re-run -- both the "not
+# cleaned" (bend-included) and "cleaned" (straight-only) results are kept
+# side by side deliberately, since the contrast between them is itself a
+# thesis result (showing the bend, not just site/width, drives the
+# instability).
+STRAIGHT_COMPARISONS = [
+    ("scenario1", "scenario32straight", "s1_to_s32straight"),
+    ("scenario32straight", "scenario1", "s32straight_to_s1"),
+    ("scenario1", "scenario33straight", "s1_to_s33straight"),
+    ("scenario33straight", "scenario1", "s33straight_to_s1"),
+]
+
+COMPARISONS = STRAIGHT_COMPARISONS
 
 SWEEP_POINTS = list(range(5, 101, 5)) + [150, 200]  # real target samples used for fine-tuning
 N_SEEDS = 10  # doubled from the initial 5 after checking per-seed variance on site_during_day
@@ -52,7 +107,11 @@ NUM_CLASSES = 16
 
 
 def load_global_normalization():
-    with open(os.path.join(DATA_DIR, "global_normalization.json")) as f:
+    # Pooled across all 7 scenarios (1-4, 7, 32, 33) -- required since
+    # NEW_COMPARISONS mixes Scenarios 1-4 with 7/32/33. Deliberately a
+    # separate file from data/global_normalization.json (Scenarios 1-4
+    # only), which is left untouched for ORIGINAL_COMPARISONS' reference.
+    with open(os.path.join(DATA_DIR, "global_normalization_all7.json")) as f:
         norm = json.load(f)
     return norm["max_xy"], norm["max_dist"]
 
@@ -180,7 +239,10 @@ if __name__ == "__main__":
         row = str(p).rjust(12) + "".join(f"{summary[lbl]['top2_accuracy'][i] * 100:>27.2f}%" for lbl in summary)
         print(row, flush=True)
 
-    with open(os.path.join(RESULT_DIR, "stage1_summary.json"), "w") as f:
+    # Deliberately NOT "stage1_summary.json" or "stage1_summary_new_comparisons.json"
+    # -- those already hold the original four and the 8-comparison batch's
+    # summaries respectively, and must not be overwritten.
+    with open(os.path.join(RESULT_DIR, "stage1_summary_straight_comparisons.json"), "w") as f:
         json.dump({"sweep_points": points, "comparisons": summary}, f, indent=2)
 
-    print("\nStage 1 complete.", flush=True)
+    print("\nStage 1 (straight-segment comparisons) complete.", flush=True)
