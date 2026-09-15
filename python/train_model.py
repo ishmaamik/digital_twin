@@ -58,7 +58,14 @@ def train_model(
         net.train()
         running_loss = 0.0
         running_acc = 1.0
-        with tqdm(train_loader, unit="batch", file=sys.stdout) as tepoch:
+        # disable=True: a live per-batch progress bar has no audience in an
+        # unattended/backgrounded run and was found to bypass mininterval-
+        # based throttling in this environment, producing unbounded log
+        # growth (tens of MB within minutes) on long fine-tuning runs with
+        # large combined datasets. Disabling it entirely is a purely
+        # cosmetic change -- it does not affect training, evaluation, or
+        # any saved numeric result.
+        with tqdm(train_loader, unit="batch", file=sys.stdout, disable=True) as tepoch:
             for i, (pos, label, pwr) in enumerate(tepoch, 0):
                 tepoch.set_description(f"Epoch {epoch}")
 
@@ -80,7 +87,7 @@ def train_model(
                 log = OrderedDict()
                 log["loss"] = running_loss
                 log["acc"] = running_acc
-                tepoch.set_postfix(log)
+                tepoch.set_postfix(log, refresh=False)
             scheduler.step()
 
             if if_writer:
