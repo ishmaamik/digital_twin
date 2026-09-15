@@ -1,0 +1,12 @@
+{
+  "max_xy": 44.94933703262359,
+  "max_dist": 45.45929006411452,
+  "pooled_from_scenarios": [
+    "scenario1",
+    "scenario2",
+    "scenario7",
+    "scenario32straight",
+    "scenario33straight"
+  ],
+  "total_samples_pooled": 11187
+}
