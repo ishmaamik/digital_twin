@@ -1,0 +1,63 @@
+Using raw bending data and source cap=500; model=rf
+
+======================================================================
+Rehearsal baseline [rf]: scenario1 -> scenario32 (s1_to_s32)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s1_to_s32_rehearsal_rf_acc.mat and result\stage1_s1_to_s32_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf]: scenario2 -> scenario33 (s2_to_s33)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s2_to_s33_rehearsal_rf_acc.mat and result\stage1_s2_to_s33_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf]: scenario3 -> scenario32 (s3_to_s32)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s3_to_s32_rehearsal_rf_acc.mat and result\stage1_s3_to_s32_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf]: scenario4 -> scenario33 (s4_to_s33)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s4_to_s33_rehearsal_rf_acc.mat and result\stage1_s4_to_s33_rehearsal_rf_pwr.mat
+Saved result\stage1_summary_rf_rehearsal_raw_bending.json
+Rehearsal raw-bending study complete for model=rf.

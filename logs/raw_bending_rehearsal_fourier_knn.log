@@ -1,0 +1,63 @@
+Using raw bending data and source cap=500; model=fourier_knn
+
+======================================================================
+Rehearsal baseline [fourier_knn]: scenario1 -> scenario32 (s1_to_s32)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s1_to_s32_rehearsal_fourier_knn_acc.mat and result\stage1_s1_to_s32_rehearsal_fourier_knn_pwr.mat
+
+======================================================================
+Rehearsal baseline [fourier_knn]: scenario2 -> scenario33 (s2_to_s33)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s2_to_s33_rehearsal_fourier_knn_acc.mat and result\stage1_s2_to_s33_rehearsal_fourier_knn_pwr.mat
+
+======================================================================
+Rehearsal baseline [fourier_knn]: scenario3 -> scenario32 (s3_to_s32)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s3_to_s32_rehearsal_fourier_knn_acc.mat and result\stage1_s3_to_s32_rehearsal_fourier_knn_pwr.mat
+
+======================================================================
+Rehearsal baseline [fourier_knn]: scenario4 -> scenario33 (s4_to_s33)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\stage1_s4_to_s33_rehearsal_fourier_knn_acc.mat and result\stage1_s4_to_s33_rehearsal_fourier_knn_pwr.mat
+Saved result\stage1_summary_fourier_knn_rehearsal_raw_bending.json
+Rehearsal raw-bending study complete for model=fourier_knn.
