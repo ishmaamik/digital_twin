@@ -1,0 +1,89 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introductory Information}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Motivations and Scope}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Problem Statement}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Research Challenges}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Contribution}{5}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Organization}{7}{section.1.6}%
+\contentsline {chapter}{\numberline {2}Related Works}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Digital Twins for Beam Prediction and CSI Feedback}{8}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Fidelity, Calibration, and the Cost of an Imperfect Twin}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Environmental Non-Stationarity Without a Digital Twin}{11}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Gaps and Opportunities}{12}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Summary}{12}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Proposed Methodology}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Overview of the Methodology}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Data: DeepSense 6G Scenarios and Experimental Comparisons}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Scenario 1: The Digital-Twin Baseline Site}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Scenarios 1 through 4: A Controlled Site-by-Time Design}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Scenarios 7, 32, and 33: A Second Narrow Site, a Second Wide Site, and a Direct Test of Lane Width Against Site Identity}{18}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Stage 0: Reproducing the Digital-Twin-Pretrained Baseline}{21}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Task Definition}{21}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Model Architecture}{21}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Training Protocol}{21}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Stage 1: Real-to-Real Degradation and Recovery Protocol}{22}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Stage 2: Architecture Comparison Under Environmental Shift}{23}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Motivation and Research Question}{23}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Model Families Compared}{24}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Multi-Layer Perceptron: Reference Point}{24}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.4}$k$-Nearest Neighbors}{25}{subsection.3.5.4}%
+\contentsline {subsection}{\numberline {3.5.5}Random Forest}{26}{subsection.3.5.5}%
+\contentsline {subsection}{\numberline {3.5.6}Fourier-Augmented $k$-Nearest Neighbors}{26}{subsection.3.5.6}%
+\contentsline {subsection}{\numberline {3.5.7}Training and Evaluation Protocol for Stage 2}{27}{subsection.3.5.7}%
+\contentsline {section}{\numberline {3.6}Stage 3: Disentangling Site Identity from Lane Width}{29}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}The Eight Extended Comparisons}{29}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Protocol}{30}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}Stage 4: Root-Cause Diagnosis of Comparison-Specific Instability}{30}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Per-Seed Trajectory Inspection}{30}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}GPS Position-Quality Metadata}{31}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}Road Geometry via Position Scatter Analysis}{31}{subsection.3.7.3}%
+\contentsline {subsection}{\numberline {3.7.4}Straight-Segment Re-Analysis}{32}{subsection.3.7.4}%
+\contentsline {subsection}{\numberline {3.7.5}Base Station Orientation Estimation for the Extended Scenarios}{33}{subsection.3.7.5}%
+\contentsline {section}{\numberline {3.8}Stage 5: Rehearsal-Protocol Recovery Under Lane-Width Mismatch}{33}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Six Further Comparisons, Reusing Stage 4's Curvature-Free Data}{34}{subsection.3.8.1}%
+\contentsline {section}{\numberline {3.9}Evaluation Metrics}{35}{section.3.9}%
+\contentsline {section}{\numberline {3.10}Integration and Interconnections}{35}{section.3.10}%
+\contentsline {section}{\numberline {3.11}Summary of the Methodology}{36}{section.3.11}%
+\contentsline {chapter}{\numberline {4}Results and Discussion}{38}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Datasets and Experimental Setup}{38}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Dataset Characteristics}{38}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Model Implementation and Training Configuration}{39}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Dataset Split}{40}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Performance Evaluation and Metric}{40}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Hyperparameters}{41}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Testing}{41}{subsection.4.1.6}%
+\contentsline {subsubsection}{Hardware and Schedule}{41}{section*.15}%
+\contentsline {section}{\numberline {4.2}Presenting the Results}{42}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Stage 0: Reproduction}{42}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Stage 1: Degradation and Recovery Across Four Comparisons}{42}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Data-versus-Optimization Ablation}{44}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Stage 2: Architecture Comparison}{44}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Stage 3: Extended Site and Lane-Width Comparisons}{48}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Stage 4: Diagnosing and Partially Resolving the College Ave Instability}{49}{subsection.4.2.6}%
+\contentsline {subsubsection}{Per-Seed Trajectories Reveal Genuine Training Instability, Not Sampling Noise}{49}{section*.26}%
+\contentsline {subsubsection}{GPS Position-Quality Metadata Differs Sharply from Scenario 1}{50}{section*.27}%
+\contentsline {subsubsection}{The Road at College Avenue Physically Curves; the Road Used for Comparison R7/R8 Does Not}{51}{section*.29}%
+\contentsline {subsubsection}{Removing the Curve Helps, but Mainly When the Curved Site Is the Deployment Target}{54}{section*.35}%
+\contentsline {subsubsection}{Base Station Orientation at College Avenue Differs From McAllister by Roughly Forty Degrees}{56}{section*.39}%
+\contentsline {subsection}{\numberline {4.2.7}Stage 5: The Non-Parametric Rehearsal Advantage Under Lane-Width Mismatch}{57}{subsection.4.2.7}%
+\contentsline {section}{\numberline {4.3}Interpreting the Results}{58}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Stage 0 Validates the Pipeline}{58}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Zero-Shot Degradation Differs in Kind, Not Only in Degree, Between Shift Types}{58}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}The Orientation-Mismatch Failure Is Specific to the Fine-Tuning Recipe, Not Intrinsic to the Site-Shift Task}{59}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Real Data, Not Optimization Budget, Drives Recovery}{61}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Internal Consistency, and a Correction the Data Itself Produced}{61}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.6}Width, Orientation, and Site: What the Extended Comparisons Actually Show}{62}{subsection.4.3.6}%
+\contentsline {subsection}{\numberline {4.3.7}Summary of Interpretations}{63}{subsection.4.3.7}%
+\contentsline {section}{\numberline {4.4}Challenges and Limitations}{64}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Implications and Significance of Findings}{66}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Conclusion of the Chapter}{68}{section.4.6}%
+\contentsline {chapter}{\numberline {5}Conclusion}{70}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Restating Research Objectives and Questions}{70}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Summary of Key Findings}{71}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Discussion of Implications}{72}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Contributions of the Research}{73}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Acknowledging Limitations}{74}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Suggestions for Future Research}{75}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Final Reflections}{76}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Concluding Remarks}{77}{section.5.8}%
+\contentsline {chapter}{References}{78}{chapter*.42}%

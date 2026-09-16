@@ -1,0 +1,14 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Top-2 beam prediction accuracy as a function of the number of real fine-tuning samples, for the Stage~0 digital-twin-to-real reproduction and all four Stage~1 real-to-real comparisons, with the 12.5\% random-chance reference line for a 16-class problem.}}{43}{figure.caption.18}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Top-2 beam prediction accuracy as a function of the number of real target-domain samples, for all four Stage~2 models across all four comparisons, with the 12.5\% random-chance reference line for a 16-class problem.}}{46}{figure.caption.23}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Top-2 beam prediction accuracy at two hundred real target samples for all four Stage~2 models, sorted by accuracy within each comparison, with the 12.5\% random-chance reference line.}}{47}{figure.caption.24}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Scenario~1 (McAllister Ave.) UE positions relative to the base station: a straight, tightly bounded two-lane segment, included here for direct visual comparison with \autoref {fig:scenario32full} and \autoref {fig:scenario33full}.}}{52}{figure.caption.31}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Scenario~32 (College Ave., day) UE positions relative to the base station, full data. The road visibly curves beyond approximately 40~m along the road, unlike Scenario~1.}}{52}{figure.caption.32}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Scenario~33 (College Ave., night) UE positions relative to the base station, full data, showing the same curve at the same along-road coordinate as Scenario~32.}}{53}{figure.caption.33}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Scenario~7 UE positions relative to the base station: a straight road segment oriented diagonally relative to the base station's coordinate frame, included to confirm that Scenario~7's severe recovery result (comparisons~R7/R8) is not confounded by the same road-curvature property found in Scenarios~32 and~33.}}{53}{figure.caption.34}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Scenario~32, restricted to the straight segment only (along-road coordinate below 40~m). Compare with the full-data version in \autoref {fig:scenario32full}.}}{54}{figure.caption.36}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Scenario~33, restricted to the straight segment only (along-road coordinate below 40~m). Compare with the full-data version in \autoref {fig:scenario33full}.}}{54}{figure.caption.37}%
+\addvspace {10\p@ }
