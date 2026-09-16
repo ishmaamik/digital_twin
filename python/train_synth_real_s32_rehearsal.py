@@ -34,13 +34,15 @@ from train_model import train_model
 
 DATA_DIR = "data"
 ARCHIVE_DIR = os.path.join(DATA_DIR, "archive")
-RESULT_DIR = os.path.join("result", "synth_real_s32_rehearsal_500cap")
+TARGET_SCENARIO = os.environ.get("SYNTH_REAL_TARGET_SCENARIO", "scenario32")
+TARGET_LABEL = TARGET_SCENARIO.replace("scenario", "s")
+RESULT_DIR = os.path.join("result", f"synth_real_{TARGET_LABEL}_rehearsal_500cap_small")
 SWEEP_POINTS = [50, 100, 150, 200]
-N_SEEDS = 10
+N_SEEDS = 3
 SYNTH_REPLAY = 250
 REAL_REPLAY = 250
-PRETRAIN_EPOCHS = 80
-FINETUNE_EPOCHS = 40
+PRETRAIN_EPOCHS = 40
+FINETUNE_EPOCHS = 20
 PRETRAIN_LR = 1e-2
 FINETUNE_LR = 1e-4
 PRETRAIN_BATCH_SIZE = 32
@@ -51,8 +53,8 @@ NUM_CLASSES = 16
 
 def target_normalization(rand_state):
     """Compute Scenario-32 scaling from its training partition only."""
-    pos_path = os.path.join(DATA_DIR, "scenario32_ue_relative_pos.mat")
-    pwr_path = os.path.join(DATA_DIR, "scenario32_real_beam_pwr.mat")
+    pos_path = os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_ue_relative_pos.mat")
+    pwr_path = os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_real_beam_pwr.mat")
     pos = loadmat(pos_path)["ue_relative_pos"]
     pwr = loadmat(pwr_path)["real_beam_pwr"]
     order = np.random.default_rng(rand_state).permutation(len(pos))
@@ -78,8 +80,8 @@ def paths():
                   os.path.join(ARCHIVE_DIR, "synth_beam_power_measured.mat")),
         "real1": (os.path.join(ARCHIVE_DIR, "ue_relative_pos.mat"),
                   os.path.join(ARCHIVE_DIR, "real_beam_pwr.mat")),
-        "s32": (os.path.join(DATA_DIR, "scenario32_ue_relative_pos.mat"),
-                os.path.join(DATA_DIR, "scenario32_real_beam_pwr.mat")),
+        "target": (os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_ue_relative_pos.mat"),
+               os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_real_beam_pwr.mat")),
     }
 
 
@@ -139,7 +141,7 @@ def main():
     source_paths = paths()
     all_acc, all_pwr, norms = [], [], []
     for seed_idx in range(N_SEEDS):
-        print(f"seed {seed_idx}: synthetic pretrain -> Scenario 1 replay -> Scenario 32", flush=True)
+        print(f"seed {seed_idx}: synthetic pretrain -> Scenario 1 replay -> {TARGET_SCENARIO}", flush=True)
         acc, pwr, norm = run_seed(seed_idx, source_paths)
         all_acc.append(acc)
         all_pwr.append(pwr)

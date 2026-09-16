@@ -446,3 +446,38 @@ Cap-500 rehearsal [rf]: scenario33straight -> scenario2 (s33straight_to_s2)
   seed 4 complete
   seed 5 complete
   seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s33straight_to_s2_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s33straight_to_s2_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario33straight -> scenario4 (s33straight_to_s4)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s33straight_to_s4_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s33straight_to_s4_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario33straight -> scenario32straight (s33straight_to_s32straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s33straight_to_s32straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s33straight_to_s32straight_cap500_rehearsal_rf_pwr.mat
+Rehearsal cap-500 all-comparisons complete for model=rf.

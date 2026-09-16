@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\train_synth_real_s32_rehearsal.py", line 172, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\train_synth_real_s32_rehearsal.py", line 145, in main
+    acc, pwr, norm = run_seed(seed_idx, source_paths)
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ismaa\Desktop\New folder (2)\digital_twin_extended\python\train_synth_real_s32_rehearsal.py", line 91, in run_seed
+    target_test = dataset(source_paths["s32"], rand_state, "test", max_xy, max_dist)
+                          ~~~~~~~~~~~~^^^^^^^
+KeyError: 's32'
