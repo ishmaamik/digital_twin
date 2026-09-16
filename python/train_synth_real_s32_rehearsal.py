@@ -81,14 +81,16 @@ def paths():
         "real1": (os.path.join(ARCHIVE_DIR, "ue_relative_pos.mat"),
                   os.path.join(ARCHIVE_DIR, "real_beam_pwr.mat")),
         "target": (os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_ue_relative_pos.mat"),
-               os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_real_beam_pwr.mat")),
+                   os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_real_beam_pwr.mat")),
+        "s32": (os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_ue_relative_pos.mat"),
+                os.path.join(DATA_DIR, f"{TARGET_SCENARIO}_real_beam_pwr.mat")),
     }
 
 
 def run_seed(seed_idx, source_paths):
     rand_state = 1000 + seed_idx
     max_xy, max_dist = target_normalization(rand_state)
-    target_test = dataset(source_paths["s32"], rand_state, "test", max_xy, max_dist)
+    target_test = dataset(source_paths["target"], rand_state, "test", max_xy, max_dist)
     target_test_loader = DataLoader(target_test, TEST_BATCH_SIZE, shuffle=False)
 
     synth_full = dataset(source_paths["synth"], rand_state, "train", max_xy, max_dist)
@@ -113,7 +115,7 @@ def run_seed(seed_idx, source_paths):
     pwr_points = [zero_pwr]
 
     for n_target in SWEEP_POINTS:
-        target_train = dataset(source_paths["s32"], rand_state, "train", max_xy, max_dist,
+        target_train = dataset(source_paths["target"], rand_state, "train", max_xy, max_dist,
                                 num_data_point=n_target)
         combined = ConcatDataset([synth_replay, real_replay, target_train])
         combined_loader = DataLoader(combined, FINETUNE_BATCH_SIZE, shuffle=True)
