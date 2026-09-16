@@ -1,0 +1,28 @@
+{
+  "model": "fourier_knn",
+  "target": "scenario7",
+  "protocol": "synthetic_scenario1_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_real_target",
+  "source_replay_cap": 500,
+  "sweep_points": [
+    0,
+    50,
+    100,
+    150,
+    200
+  ],
+  "n_seeds": 3,
+  "top2_accuracy": [
+    0.19688109161793368,
+    0.49902534113060426,
+    0.5516569200779727,
+    0.6432748538011696,
+    0.6588693957115009
+  ],
+  "top2_relative_power": [
+    0.7151444997996733,
+    0.8484396240908186,
+    0.8774190135982444,
+    0.9004167628787633,
+    0.9076958681251509
+  ]
+}

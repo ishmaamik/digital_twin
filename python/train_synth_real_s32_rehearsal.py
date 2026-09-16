@@ -95,7 +95,7 @@ def run_seed(seed_idx, source_paths):
 
     synth_full = dataset(source_paths["synth"], rand_state, "train", max_xy, max_dist)
     synth_loader = DataLoader(synth_full, PRETRAIN_BATCH_SIZE, shuffle=True)
-    comment = f"synth_real_s32_cap500_seed{seed_idx}_{datetime.datetime.now():%H_%M_%S_%f}"
+    comment = f"synth_real_{TARGET_LABEL}_cap500_seed{seed_idx}_{datetime.datetime.now():%H_%M_%S_%f}"
     _, zero_acc, zero_pwr, _, _, _, model_path = train_model(
         train_loader=synth_loader,
         val_loader=target_test_loader,
@@ -152,20 +152,21 @@ def main():
 
     all_acc = np.stack(all_acc, axis=-1)
     all_pwr = np.stack(all_pwr, axis=-1)
-    savemat(os.path.join(RESULT_DIR, "stage2_synth_real_s32_rehearsal_500cap_acc.mat"),
+    savemat(os.path.join(RESULT_DIR, f"stage2_synth_real_{TARGET_LABEL}_rehearsal_500cap_acc.mat"),
             {"acc": all_acc, "sweep_points": [0] + SWEEP_POINTS})
-    savemat(os.path.join(RESULT_DIR, "stage2_synth_real_s32_rehearsal_500cap_pwr.mat"),
+    savemat(os.path.join(RESULT_DIR, f"stage2_synth_real_{TARGET_LABEL}_rehearsal_500cap_pwr.mat"),
             {"pwr": all_pwr, "sweep_points": [0] + SWEEP_POINTS})
     summary = {
-        "protocol": "full_scenario1_synthetic_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_scenario32",
+        "target": TARGET_SCENARIO,
+        "protocol": "full_scenario1_synthetic_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_real_target",
         "source_replay_cap": 500,
         "sweep_points": [0] + SWEEP_POINTS,
-        "normalization": "Scenario32 training partition per seed",
+        "normalization": f"{TARGET_SCENARIO} training partition per seed",
         "top2_accuracy": all_acc[1].mean(axis=-1).tolist(),
         "top2_relative_power": all_pwr[1].mean(axis=-1).tolist(),
         "normalization_values": norms,
     }
-    with open(os.path.join(RESULT_DIR, "stage2_synth_real_s32_rehearsal_500cap_summary.json"), "w") as file:
+    with open(os.path.join(RESULT_DIR, f"stage2_synth_real_{TARGET_LABEL}_rehearsal_500cap_summary.json"), "w") as file:
         json.dump(summary, file, indent=2)
     print("synth-real-Scenario32 rehearsal study complete.", flush=True)
 

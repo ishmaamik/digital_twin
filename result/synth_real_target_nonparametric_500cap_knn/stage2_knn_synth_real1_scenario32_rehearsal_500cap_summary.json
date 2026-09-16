@@ -1,0 +1,28 @@
+{
+  "model": "knn",
+  "target": "scenario32",
+  "protocol": "synthetic_scenario1_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_real_target",
+  "source_replay_cap": 500,
+  "sweep_points": [
+    0,
+    50,
+    100,
+    150,
+    200
+  ],
+  "n_seeds": 3,
+  "top2_accuracy": [
+    0.11231324059763009,
+    0.6192684183410613,
+    0.7006697578567748,
+    0.7794951056156622,
+    0.7918598660484286
+  ],
+  "top2_relative_power": [
+    0.7369527034426101,
+    0.9166570343552083,
+    0.9429044811302804,
+    0.961688825653949,
+    0.9648793650916089
+  ]
+}

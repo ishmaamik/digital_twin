@@ -1,0 +1,41 @@
+{
+  "target": "scenario2",
+  "protocol": "full_scenario1_synthetic_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_real_target",
+  "source_replay_cap": 500,
+  "sweep_points": [
+    0,
+    50,
+    100,
+    150,
+    200
+  ],
+  "normalization": "scenario2 training partition per seed",
+  "top2_accuracy": [
+    0.5781512605042016,
+    0.5904761904761905,
+    0.6072829131652661,
+    0.6218487394957983,
+    0.6420168067226891
+  ],
+  "top2_relative_power": [
+    0.7869515419006348,
+    0.7898861765861511,
+    0.8029226660728455,
+    0.816082239151001,
+    0.8258917331695557
+  ],
+  "normalization_values": [
+    [
+      29.66812565177679,
+      36.11488825572739
+    ],
+    [
+      29.66812565177679,
+      36.11488825572739
+    ],
+    [
+      29.66812565177679,
+      36.11488825572739
+    ]
+  ]
+}

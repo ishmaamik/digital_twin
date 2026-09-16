@@ -1,0 +1,28 @@
+{
+  "model": "rf",
+  "target": "scenario7",
+  "protocol": "synthetic_scenario1_pretrain_then_250_synthetic_plus_250_real_scenario1_plus_N_real_target",
+  "source_replay_cap": 500,
+  "sweep_points": [
+    0,
+    50,
+    100,
+    150,
+    200
+  ],
+  "n_seeds": 3,
+  "top2_accuracy": [
+    0.01364522417153996,
+    0.6549707602339181,
+    0.6764132553606238,
+    0.7076023391812866,
+    0.7446393762183235
+  ],
+  "top2_relative_power": [
+    0.6740674787022202,
+    0.9052977405212466,
+    0.9169089400075091,
+    0.9243453985994331,
+    0.9342053644558558
+  ]
+}
