@@ -1,0 +1,9 @@
+Using normalization: max_xy=52.5987, max_dist=53.2021
+Running missing rehearsal comparison scenario32straight -> scenario7 with model=rf
+
+======================================================================
+Rehearsal baseline [rf] comparison: scenario32straight -> scenario7  (s32straight_to_s7)
+======================================================================
+Saved result\stage1_s32straight_to_s7_rehearsal_rf_acc.mat and result\stage1_s32straight_to_s7_rehearsal_rf_pwr.mat
+Saved result\stage1_summary_rf_rehearsal_s32straight_to_s7.json
+Rehearsal baseline comparison complete for model=rf.

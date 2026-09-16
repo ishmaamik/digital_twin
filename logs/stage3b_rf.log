@@ -1,0 +1,50 @@
+Using normalization: max_xy=52.5987, max_dist=53.2021
+Running Stage 2 REHEARSAL baseline (batch 3b) with model=rf
+
+======================================================================
+Rehearsal baseline [rf] comparison: scenario33straight -> scenario1  (s33straight_to_s1)
+======================================================================
+Saved result\stage1_s33straight_to_s1_rehearsal_rf_acc.mat and result\stage1_s33straight_to_s1_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf] comparison: scenario33straight -> scenario2  (s33straight_to_s2)
+======================================================================
+Saved result\stage1_s33straight_to_s2_rehearsal_rf_acc.mat and result\stage1_s33straight_to_s2_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf] comparison: scenario33straight -> scenario4  (s33straight_to_s4)
+======================================================================
+Saved result\stage1_s33straight_to_s4_rehearsal_rf_acc.mat and result\stage1_s33straight_to_s4_rehearsal_rf_pwr.mat
+
+======================================================================
+Rehearsal baseline [rf] comparison: scenario33straight -> scenario32straight  (s33straight_to_s32straight)
+======================================================================
+Saved result\stage1_s33straight_to_s32straight_rehearsal_rf_acc.mat and result\stage1_s33straight_to_s32straight_rehearsal_rf_pwr.mat
+
+=== Rehearsal baseline [rf] batch-3b summary: mean top-2 accuracy per comparison ===
+real_samples       s33straight_to_s1       s33straight_to_s2       s33straight_to_s4s33straight_to_s32straight
+           0                  13.73%                  10.42%                   0.91%                  32.40%
+           5                  17.93%                  14.29%                  20.78%                  49.47%
+          10                  25.40%                  22.55%                  30.48%                  62.25%
+          15                  31.37%                  29.39%                  36.12%                  70.36%
+          20                  38.32%                  34.71%                  40.51%                  70.36%
+          25                  42.65%                  39.08%                  44.33%                  72.86%
+          30                  47.87%                  42.35%                  46.90%                  77.01%
+          35                  52.40%                  45.19%                  48.96%                  77.20%
+          40                  56.69%                  47.60%                  49.63%                  77.33%
+          45                  60.77%                  49.14%                  50.13%                  79.79%
+          50                  63.98%                  51.76%                  51.04%                  81.09%
+          55                  66.17%                  55.18%                  52.14%                  82.11%
+          60                  67.89%                  56.44%                  53.34%                  82.95%
+          65                  69.42%                  59.98%                  54.30%                  83.35%
+          70                  70.66%                  61.60%                  55.08%                  83.98%
+          75                  72.01%                  62.18%                  56.93%                  84.69%
+          80                  72.26%                  63.63%                  56.71%                  84.76%
+          85                  73.64%                  64.40%                  57.91%                  84.91%
+          90                  74.49%                  65.51%                  57.22%                  84.99%
+          95                  75.47%                  66.50%                  57.73%                  85.24%
+         100                  77.52%                  67.13%                  58.72%                  85.45%
+         150                  82.73%                  74.42%                  61.23%                  88.15%
+         200                  86.50%                  77.95%                  63.96%                  89.31%
+
+Rehearsal baseline comparison complete for model=rf.

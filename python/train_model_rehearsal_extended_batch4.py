@@ -1,6 +1,27 @@
 """
-Rehearsal-based MLP training for the 20 remaining scenario-pair comparisons
-requested to round out the full cross-scenario matrix.
+Rehearsal-based MLP training, batch 4: 6 comparisons that previously only
+had a non-rehearsal (old warm-start-only, target-samples-only fine-tuning)
+result on record -- this batch re-runs them under the TRUE rehearsal
+protocol (full source pool UNION N target samples at every sweep point,
+cap=500, 10 seeds) so they are directly comparable to every other rehearsal
+result in this project:
+
+    1 -> 7, 2 -> 1, 32straight -> 1, 33straight -> 1, 4 -> 2, 7 -> 1
+
+MLP ONLY (no knn/rf/fourier_knn/fourier_rf -- explicitly out of scope for
+this batch per instruction).
+
+Run as its own separate process, in parallel with (not instead of) whatever
+else is already running -- in particular the ongoing MLP batch-3 run
+(train_model_rehearsal_extended_batch3.py) and the sklearn stage-3b run
+(rehearsal_study/train_baselines_cross_scenario_rehearsal_stage3b.py),
+neither of which this script touches. To avoid a race condition where two
+processes' incremental load-merge-write of a SHARED summary JSON could
+clobber each other's newly-written entries, this script writes its own
+separate summary file (stage1_summary_rehearsal_extended_batch4.json).
+Per-comparison .mat files still go to the same result/ directory as every
+other batch, which is safe since every comparison label in this batch is
+unique and does not collide with any other batch's labels.
 
 Unlike every previous MLP script in this project (train_model_cross_scenario.py),
 which continues fine-tuning on N target-only samples at each sweep point, this
@@ -66,23 +87,13 @@ RESULT_DIR = "result"
 # involving 32/33 (e.g. scenario2<->scenario7, scenario3<->scenario1) are
 # unaffected and use the original full scenario data as before.
 COMPARISONS = [
-    ("scenario1", "scenario32straight", "s1_to_s32straight"),
-    ("scenario1", "scenario33straight", "s1_to_s33straight"),
+    ("scenario1", "scenario7", "s1_to_s7"),
+    ("scenario2", "scenario1", "s2_to_s1"),
+    ("scenario32straight", "scenario1", "s32straight_to_s1"),
+    ("scenario33straight", "scenario1", "s33straight_to_s1"),
+    ("scenario4", "scenario2", "s4_to_s2"),
+    ("scenario7", "scenario1", "s7_to_s1"),
 ]
-# Note: this batch re-runs s1->32straight and s1->33straight specifically
-# because their only prior MLP results (stage1_s1_to_s32straight_acc.mat /
-# stage1_s1_to_s33straight_acc.mat) were produced by the OLD warm-start-only
-# protocol in train_model_cross_scenario.py (fine-tune on N target samples
-# only, no source replay) -- NOT this script's true rehearsal protocol. That
-# made them incomparable to the s2_to_s33straight / s4_to_s33straight
-# rehearsal results already in this batch, which is exactly the mismatch
-# that motivated this re-run: to get a fair, same-protocol (same cap=500,
-# same 10 seeds) comparison of McAllister-sourced vs Rural-Road-sourced
-# rehearsal into the same College-Ave-straight targets. Output files use the
-# same "_rehearsal" suffix (no model name) as every other MLP result in this
-# script, and do not collide with the existing KNN/RF/Fourier-KNN rehearsal
-# results for these same pairs (stage1_s1_to_s32straight_rehearsal_knn_*.mat
-# etc., produced separately by rehearsal_study/train_baselines_rehearsal.py).
 
 SWEEP_POINTS = list(range(5, 101, 5)) + [150, 200]
 N_SEEDS = 10
@@ -229,10 +240,10 @@ if __name__ == "__main__":
     print(f"Using global (7-scenario) normalization: max_xy={max_xy:.4f}, max_dist={max_dist:.4f}", flush=True)
     print(f"Running {len(COMPARISONS)} rehearsal comparisons, {N_SEEDS} seeds each.", flush=True)
 
-    # Load any existing summary so this (smaller, follow-up) batch merges its
-    # results in rather than clobbering the 10 comparisons already recorded
-    # from the earlier run of this same script.
-    summary_path = os.path.join(RESULT_DIR, "stage1_summary_rehearsal_extended.json")
+    # Separate summary file from the sibling batch3-vs-batch1 script (see
+    # module docstring) -- avoids a read-modify-write race between two
+    # concurrently running processes on the same JSON file.
+    summary_path = os.path.join(RESULT_DIR, "stage1_summary_rehearsal_extended_batch4.json")
     summary = {}
     if os.path.exists(summary_path):
         with open(summary_path) as f:
@@ -260,14 +271,14 @@ if __name__ == "__main__":
         # the very end, so a multi-hour run's progress is never lost if it is
         # interrupted partway through.
         points = [0] + SWEEP_POINTS
-        with open(os.path.join(RESULT_DIR, "stage1_summary_rehearsal_extended.json"), "w") as f:
+        with open(summary_path, "w") as f:
             json.dump({"sweep_points": points, "comparisons": summary}, f, indent=2)
 
-    print("\n=== Rehearsal-extended batch summary: mean top-2 accuracy per comparison ===", flush=True)
+    print("\n=== Rehearsal-extended batch-4 summary: mean top-2 accuracy per comparison ===", flush=True)
     points = [0] + SWEEP_POINTS
     for lbl, s in summary.items():
         print(f"{lbl:16s} 0={s['top2_accuracy'][0]*100:6.2f}%  "
               f"100={s['top2_accuracy'][20]*100:6.2f}%  200={s['top2_accuracy'][-1]*100:6.2f}%", flush=True)
 
     print(f"\nCompleted {len(summary)}/{len(COMPARISONS)} comparisons successfully.", flush=True)
-    print("Rehearsal-extended batch complete.", flush=True)
+    print("Rehearsal-extended batch-4 complete.", flush=True)

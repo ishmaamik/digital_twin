@@ -1,0 +1,9 @@
+Using normalization: max_xy=52.5987, max_dist=53.2021
+Running missing rehearsal comparison scenario32straight -> scenario7 with model=fourier_knn
+
+======================================================================
+Rehearsal baseline [fourier_knn] comparison: scenario32straight -> scenario7  (s32straight_to_s7)
+======================================================================
+Saved result\stage1_s32straight_to_s7_rehearsal_fourier_knn_acc.mat and result\stage1_s32straight_to_s7_rehearsal_fourier_knn_pwr.mat
+Saved result\stage1_summary_fourier_knn_rehearsal_s32straight_to_s7.json
+Rehearsal baseline comparison complete for model=fourier_knn.
