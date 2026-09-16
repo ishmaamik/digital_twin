@@ -1,0 +1,33 @@
+comparison,description,"MLP (rehearsal, full source)",k-NN (500-source-cap),Random Forest (500-source-cap),Fourier + k-NN (500-source-cap)
+s1_to_s2,McAllister day (narrow) -> McAllister night (narrow),56.17,74.59,78.67,73.19
+s1_to_s3,McAllister day (narrow) -> Rural Rd day (wide),28.02,63.46,70.77,61.54
+s1_to_s32straight,McAllister day (narrow) -> College Ave day (narrow),50.59,83.35,86.95,82.91
+s1_to_s33straight,McAllister day (narrow) -> College Ave night (narrow),54.64,84.99,89.73,84.39
+s1_to_s7,McAllister day (narrow) -> Site 7 day (wide),26.84,69.01,75.73,68.30
+s2_to_s1,McAllister night (narrow) -> McAllister day (narrow),55.67,81.59,83.77,81.51
+s2_to_s32straight,McAllister night (narrow) -> College Ave day (narrow),51.52,84.21,87.31,83.89
+s2_to_s33straight,McAllister night (narrow) -> College Ave night (narrow),52.74,84.19,88.83,83.32
+s2_to_s4,McAllister night (narrow) -> Rural Rd night (wide),32.57,57.49,67.57,53.13
+s2_to_s7,McAllister night (narrow) -> Site 7 day (wide),38.01,69.01,75.15,68.36
+s32straight_to_s1,College Ave day (narrow) -> McAllister day (narrow),29.81,86.11,88.70,85.67
+s32straight_to_s2,College Ave day (narrow) -> McAllister night (narrow),26.77,78.69,82.67,76.91
+s32straight_to_s3,College Ave day (narrow) -> Rural Rd day (wide),25.13,63.46,70.64,61.54
+s32straight_to_s33straight,College Ave day (narrow) -> College Ave night (narrow),76.16,84.87,91.65,84.78
+s32straight_to_s7,College Ave day (narrow) -> Site 7 day (wide),27.66,69.01,75.73,68.42
+s33straight_to_s1,College Ave night (narrow) -> McAllister day (narrow),31.57,87.41,91.61,86.67
+s33straight_to_s2,College Ave night (narrow) -> McAllister night (narrow),25.76,79.56,83.43,77.55
+s33straight_to_s32straight,College Ave night (narrow) -> College Ave day (narrow),78.00,84.53,91.16,84.44
+s33straight_to_s4,College Ave night (narrow) -> Rural Rd night (wide),27.25,57.49,67.09,53.34
+s3_to_s1,Rural Rd day (wide) -> McAllister day (narrow),25.65,89.38,96.56,88.70
+s3_to_s32straight,Rural Rd day (wide) -> College Ave day (narrow),63.64,88.55,94.27,87.92
+s3_to_s4,Rural Rd day (wide) -> Rural Rd night (wide),18.96,38.10,38.58,35.35
+s3_to_s7,Rural Rd day (wide) -> Site 7 day (wide),32.63,64.85,71.23,65.03
+s4_to_s2,Rural Rd night (wide) -> McAllister night (narrow),43.29,83.21,90.27,80.54
+s4_to_s3,Rural Rd night (wide) -> Rural Rd day (wide),17.95,45.20,44.30,44.56
+s4_to_s33straight,Rural Rd night (wide) -> College Ave night (narrow),64.37,89.53,94.95,88.08
+s4_to_s7,Rural Rd night (wide) -> Site 7 day (wide),27.72,64.97,70.00,64.62
+s7_to_s1,Site 7 day (wide) -> McAllister day (narrow),47.93,89.38,96.85,88.70
+s7_to_s2,Site 7 day (wide) -> McAllister night (narrow),41.66,83.21,90.10,80.50
+s7_to_s3,Site 7 day (wide) -> Rural Rd day (wide),20.47,59.33,66.61,58.19
+s7_to_s32straight,Site 7 day (wide) -> College Ave day (narrow),71.31,88.55,94.42,87.96
+s7_to_s4,Site 7 day (wide) -> Rural Rd night (wide),27.67,53.88,61.84,50.27
