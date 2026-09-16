@@ -1,0 +1,448 @@
+Using source cap=500; model=rf
+Writing results to result\Other_models_500-cap; comparisons=32
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario1 -> scenario2 (s1_to_s2)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s1_to_s2_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s1_to_s2_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario1 -> scenario3 (s1_to_s3)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s1_to_s3_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s1_to_s3_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario1 -> scenario7 (s1_to_s7)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s1_to_s7_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s1_to_s7_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario1 -> scenario32straight (s1_to_s32straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s1_to_s32straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s1_to_s32straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario1 -> scenario33straight (s1_to_s33straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s1_to_s33straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s1_to_s33straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario2 -> scenario1 (s2_to_s1)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s2_to_s1_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s2_to_s1_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario2 -> scenario4 (s2_to_s4)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s2_to_s4_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s2_to_s4_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario2 -> scenario7 (s2_to_s7)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s2_to_s7_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s2_to_s7_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario2 -> scenario32straight (s2_to_s32straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s2_to_s32straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s2_to_s32straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario2 -> scenario33straight (s2_to_s33straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s2_to_s33straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s2_to_s33straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario3 -> scenario1 (s3_to_s1)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s3_to_s1_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s3_to_s1_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario3 -> scenario4 (s3_to_s4)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s3_to_s4_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s3_to_s4_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario3 -> scenario7 (s3_to_s7)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s3_to_s7_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s3_to_s7_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario3 -> scenario32straight (s3_to_s32straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s3_to_s32straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s3_to_s32straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario4 -> scenario2 (s4_to_s2)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s4_to_s2_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s4_to_s2_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario4 -> scenario3 (s4_to_s3)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s4_to_s3_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s4_to_s3_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario4 -> scenario7 (s4_to_s7)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s4_to_s7_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s4_to_s7_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario4 -> scenario33straight (s4_to_s33straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s4_to_s33straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s4_to_s33straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario7 -> scenario1 (s7_to_s1)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s7_to_s1_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s7_to_s1_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario7 -> scenario2 (s7_to_s2)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s7_to_s2_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s7_to_s2_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario7 -> scenario3 (s7_to_s3)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s7_to_s3_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s7_to_s3_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario7 -> scenario4 (s7_to_s4)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s7_to_s4_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s7_to_s4_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario7 -> scenario32straight (s7_to_s32straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s7_to_s32straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s7_to_s32straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario32straight -> scenario1 (s32straight_to_s1)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s32straight_to_s1_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s32straight_to_s1_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario32straight -> scenario2 (s32straight_to_s2)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s32straight_to_s2_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s32straight_to_s2_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario32straight -> scenario3 (s32straight_to_s3)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s32straight_to_s3_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s32straight_to_s3_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario32straight -> scenario7 (s32straight_to_s7)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s32straight_to_s7_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s32straight_to_s7_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario32straight -> scenario33straight (s32straight_to_s33straight)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s32straight_to_s33straight_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s32straight_to_s33straight_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario33straight -> scenario1 (s33straight_to_s1)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
+  seed 7 complete
+  seed 8 complete
+  seed 9 complete
+Saved result\Other_models_500-cap\stage1_s33straight_to_s1_cap500_rehearsal_rf_acc.mat and result\Other_models_500-cap\stage1_s33straight_to_s1_cap500_rehearsal_rf_pwr.mat
+
+======================================================================
+Cap-500 rehearsal [rf]: scenario33straight -> scenario2 (s33straight_to_s2)
+======================================================================
+  seed 0 complete
+  seed 1 complete
+  seed 2 complete
+  seed 3 complete
+  seed 4 complete
+  seed 5 complete
+  seed 6 complete
